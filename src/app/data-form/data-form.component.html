@@ -1,0 +1,60 @@
+<!-- app.component.html -->
+
+<div style="display: flex; justify-content: space-between">
+    <div>
+      <div *ngFor="let module of checkboxModule">
+        <input type="checkbox" (change)="onCheckboxChange($event, module.id, 'module')" />
+        {{ module.name }}
+      </div>
+    </div>
+  
+    <div>
+      <div *ngFor="let product of checkboxProducts">
+        <input type="checkbox" (change)="onCheckboxChange($event, product.id, 'products')" />
+        {{ product.name }}
+      </div>
+    </div>
+  
+    <div>
+      <div *ngFor="let profile of checkboxsProfile">
+        <input type="checkbox" (change)="onCheckboxChange($event, profile.id, 'profiles')" />
+        {{ profile.name }}
+      </div>
+    </div>
+  </div>
+  
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let key of ['id', 'name', 'module', 'products', 'profiles']">
+          {{ key }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of filteredData$ | async">
+        <td>
+          {{ item.id }}
+        </td>
+        <td>
+          {{ item.name }}
+        </td>
+        <td>
+          {{ item.module.name }}
+        </td>
+        <td *ngFor="let product of item.products">
+          {{ product.name }}
+        </td>
+        <td *ngFor="let profile of item.profiles">
+          {{ profile.name }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
